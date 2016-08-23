@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MergeSort
+namespace Sorting
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Console.ReadLine();
         }
     }
 }

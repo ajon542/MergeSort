@@ -53,6 +53,12 @@
     <Compile Include="MergeSortTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MergeSort\Sorting.csproj">
+      <Project>{8e54f2fb-78f2-40d8-baa3-f5e8e7ccb1ee}</Project>
+      <Name>Sorting</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
