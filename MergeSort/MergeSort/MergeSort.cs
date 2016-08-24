@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Sorting
 {
     /// <summary>
@@ -11,45 +6,45 @@ namespace Sorting
     /// </summary>
     public class MergeSort
     {
-        public static void MergeSort_Recursive(int[] arr)
+        public static void MergeSort_Recursive(int[] input)
         {
-            MergeSort_Recursive(arr, 0, arr.Length, new int[arr.Length]);
+            MergeSort_Recursive(input, 0, input.Length, new int[input.Length]);
         }
 
-        private static void MergeSort_Recursive(int[] arr, int start, int end, int[] work)
+        private static void MergeSort_Recursive(int[] input, int left, int right, int[] tmp)
         {
             // If the run size is 1, consider it sorted.
-            if (end - start < 2)
+            if (right - left < 2)
             {
                 return;
             }
 
-            int middle = (end + start) / 2;
+            int middle = (right + left) / 2;
 
-            MergeSort_Recursive(arr, start, middle, work);
-            MergeSort_Recursive(arr, middle, end, work);
-            Merge(arr, start, middle, end, work);
+            MergeSort_Recursive(input, left, middle, tmp);
+            MergeSort_Recursive(input, middle, right, tmp);
+            Merge(input, left, middle, right, tmp);
 
-            for (int k = start; k < end; ++k)
+            for (int k = left; k < right; ++k)
             {
-                arr[k] = work[k];
+                input[k] = tmp[k];
             }
         }
 
-        private static void Merge(int[] arr, int start, int middle, int end, int[] work)
+        private static void Merge(int[] input, int left, int middle, int right, int[] tmp)
         {
-            int i = start;
+            int i = left;
             int j = middle;
 
-            for (int k = start; k < end; ++k)
+            for (int k = left; k < right; ++k)
             {
-                if (i < middle && (j >= end || arr[i] <= arr[j]))
+                if (i < middle && (j >= right || input[i] <= input[j]))
                 {
-                    work[k] = arr[i++];
+                    tmp[k] = input[i++];
                 }
                 else
                 {
-                    work[k] = arr[j++];
+                    tmp[k] = input[j++];
                 }
             }
         }
