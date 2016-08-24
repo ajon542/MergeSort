@@ -11,21 +11,12 @@ namespace Sorting
     /// </summary>
     public class MergeSort
     {
-        /// <summary>
-        /// Sort the array of integers.
-        /// </summary>
-        /// <param name="arr">The array of integers.</param>
-        public void Sort(int[] arr)
+        public static void MergeSort_Recursive(int[] arr)
         {
-            MergeSort_Recursive(arr, new int[arr.Length]);
+            MergeSort_Recursive(arr, 0, arr.Length, new int[arr.Length]);
         }
 
-        private void MergeSort_Recursive(int[] arr, int[] work)
-        {
-            SplitMerge(arr, 0, arr.Length, work);
-        }
-
-        private void SplitMerge(int[] arr, int start, int end, int[] work)
+        private static void MergeSort_Recursive(int[] arr, int start, int end, int[] work)
         {
             // If the run size is 1, consider it sorted.
             if (end - start < 2)
@@ -35,8 +26,8 @@ namespace Sorting
 
             int middle = (end + start) / 2;
 
-            SplitMerge(arr, start, middle, work);
-            SplitMerge(arr, middle, end, work);
+            MergeSort_Recursive(arr, start, middle, work);
+            MergeSort_Recursive(arr, middle, end, work);
             Merge(arr, start, middle, end, work);
 
             for (int k = start; k < end; ++k)
@@ -45,14 +36,14 @@ namespace Sorting
             }
         }
 
-        private void Merge(int[] arr, int start, int middle, int end, int[] work)
+        private static void Merge(int[] arr, int start, int middle, int end, int[] work)
         {
             int i = start;
             int j = middle;
 
-            for(int k = start; k < end; ++k)
+            for (int k = start; k < end; ++k)
             {
-                if(i < middle && (j >= end || arr[i] <= arr[j]))
+                if (i < middle && (j >= end || arr[i] <= arr[j]))
                 {
                     work[k] = arr[i++];
                 }

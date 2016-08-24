@@ -11,12 +11,10 @@ namespace MergeSortTest
         [TestMethod]
         public void TestMethod1()
         {
-            MergeSort sort = new MergeSort();
-
             int[] input = { 1 };
             int[] expected = { 1 };
 
-            sort.Sort(input);
+            MergeSort.MergeSort_Recursive(input);
 
             CollectionAssert.AreEqual(expected, input);
         }
@@ -24,12 +22,10 @@ namespace MergeSortTest
         [TestMethod]
         public void TestMethod2()
         {
-            MergeSort sort = new MergeSort();
-
             int[] input = { 2, 1 };
             int[] expected = { 1, 2 };
 
-            sort.Sort(input);
+            MergeSort.MergeSort_Recursive(input);
 
             CollectionAssert.AreEqual(expected, input);
         }
@@ -37,12 +33,10 @@ namespace MergeSortTest
         [TestMethod]
         public void TestMethod3()
         {
-            MergeSort sort = new MergeSort();
-
             int[] input = { 3, 2, 1 };
             int[] expected = { 1, 2, 3 };
 
-            sort.Sort(input);
+            MergeSort.MergeSort_Recursive(input);
 
             CollectionAssert.AreEqual(expected, input);
         }
@@ -50,14 +44,38 @@ namespace MergeSortTest
         [TestMethod]
         public void TestMethod4()
         {
-            MergeSort sort = new MergeSort();
-
             int[] input = { 3, 2, 1, 10 };
             int[] expected = { 1, 2, 3, 10 };
 
-            sort.Sort(input);
+            MergeSort.MergeSort_Recursive(input);
 
             CollectionAssert.AreEqual(expected, input);
+        }
+
+        [TestMethod]
+        public void TestMethod5()
+        {
+            const int ItemCount = 1000;
+
+            Random rnd = new Random();
+
+            int[] input = new int[ItemCount];
+
+            for (int i = 0; i < ItemCount; ++i)
+            {
+                int random = rnd.Next(ItemCount);
+                input[i] = random;
+            }
+
+            MergeSort.MergeSort_Recursive(input);
+
+            for (int i = 0; i < ItemCount - 1; ++i)
+            {
+                if (input[i] > input[i + 1])
+                {
+                    Assert.Fail("input element input[{0}]={1} is greater than input[{2}]={3}", i, input[i], i + 1, input[i + 1]);
+                }
+            }
         }
     }
 }
