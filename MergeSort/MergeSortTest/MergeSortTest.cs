@@ -148,5 +148,31 @@ namespace MergeSortTest
                 }
             }
         }
+
+        [TestMethod]
+        public void TestMethod11()
+        {
+            const int ItemCount = 1001;
+
+            Random rnd = new Random();
+
+            List<int> input = new List<int>();
+
+            for (int i = 0; i < ItemCount; ++i)
+            {
+                int random = rnd.Next(ItemCount);
+                input.Add(random);
+            }
+
+            input = MergeSort.MergeSort_Recursive(input);
+
+            for (int i = 0; i < ItemCount - 1; ++i)
+            {
+                if (input[i] > input[i + 1])
+                {
+                    Assert.Fail("input element input[{0}]={1} is greater than input[{2}]={3}", i, input[i], i + 1, input[i + 1]);
+                }
+            }
+        }
     }
 }
