@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="MergeSortTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickSortTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MergeSort\Sorting.csproj">
